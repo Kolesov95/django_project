@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from mainapp.models import ProductCategory, Product
 
 # Create your views here.
 def index(request):
@@ -29,6 +29,8 @@ def contacts(request):
 
 def products(request):
     product_list = ['все', 'дом', 'офис', 'модерн', 'классика']
+    category = ProductCategory.objects.all()
     context = {'page_title': 'каталог',
-               'product_list': product_list}
+               'product_list': product_list,
+               'category': category}
     return render(request, 'mainapp/products.html', context)
